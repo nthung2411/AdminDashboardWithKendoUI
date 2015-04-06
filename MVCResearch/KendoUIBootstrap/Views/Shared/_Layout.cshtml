@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo-css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #left-navigation-bar {
+            width: 16%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+
+            <div class="pull-left">
+                <button type="button" class="navbar-toggle" data-toggle="modal" data-target="#left-navigation-bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-navigation-bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="navbar-collapse collapse" id="top-navigation-bar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </header>
+
+    <div class="navbar-inverse navbar-left" id="left-navigation-bar">
+        <ul class="nav navbar-nav nav-pills nav-stacked">
+            <li><a href="#">jedan</a></li>
+            <li><a href="#">jedan</a></li>
+            <li><a href="#">jedan</a></li>
+            <li><a href="#">jedan</a></li>
+            <li><a href="#">jedan</a></li>
+        </ul>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

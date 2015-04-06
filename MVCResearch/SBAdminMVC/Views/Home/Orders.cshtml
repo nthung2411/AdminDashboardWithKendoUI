@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+}
+
+@section header{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Orders
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="@Url.Action("Dashboard", "Home")">Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-shopping-cart"></i> Orders
+                </li>
+            </ol>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#left-navigation-bar li:nth-child(4)').addClass('active');
+    });
+</script>

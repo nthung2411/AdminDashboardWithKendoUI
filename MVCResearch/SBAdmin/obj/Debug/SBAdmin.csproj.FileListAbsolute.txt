@@ -1,0 +1,6 @@
+E:\Sources\Sample\MVCResearch\SBAdmin\bin\SBAdmin.dll.config
+E:\Sources\Sample\MVCResearch\SBAdmin\bin\SBAdmin.dll
+E:\Sources\Sample\MVCResearch\SBAdmin\bin\SBAdmin.pdb
+E:\Sources\Sample\MVCResearch\SBAdmin\obj\Debug\SBAdmin.csprojResolveAssemblyReference.cache
+E:\Sources\Sample\MVCResearch\SBAdmin\obj\Debug\SBAdmin.dll
+E:\Sources\Sample\MVCResearch\SBAdmin\obj\Debug\SBAdmin.pdb

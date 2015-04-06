@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  This file contains basic settings needed for most web apps.
+  For full Combres settings (with explanation), refer to the sample definition file: combres_full_with_annotation.xml
+  Also, refer to Combres' documentation: http://combres.codeplex.com/documentation	
+-->
+<combres xmlns='urn:combres'>
+  <filters>
+    <filter type="Combres.Filters.FixUrlsInCssFilter, Combres" />
+  </filters>
+  <resourceSets url="~/combres.axd"
+                defaultDuration="30"
+                defaultVersion="auto"
+                defaultDebugEnabled="false"
+                defaultIgnorePipelineWhenDebug="true"
+                localChangeMonitorInterval="30"
+                remoteChangeMonitorInterval="60"
+                >
+
+    <resourceSet name="sbAdminCss" type="css">
+      <resource path="~/Content/Site.css" />
+      <resource path="~/Content/Pace/themes/black/pace-theme-loading-bar.css" />
+      <resource path="~/Content/bootstrap.css" />
+      <resource path="~/Content/SbAdmin/sb-admin.css" />
+      <resource path="~/Content/SbAdmin/plugins/morris.css" />
+      <resource path="~/Content/SbAdmin/font-awesome/css/font-awesome.min.css" />
+    </resourceSet>
+    <resourceSet name="sbAdminJs" type="js">
+      <resource path="~/Scripts/Pace/pace.min.js" />
+      <resource path="~/scripts/jquery-1.10.2.js" />
+      <resource path="~/scripts/bootstrap.min.js" />
+      <resource path="~/Scripts/modernizr-2.6.2.js" />
+    </resourceSet>
+    <resourceSet name="sbAdminChartJs" type="js">
+      <resource path="~/scripts/morris/raphael.min.js" />
+      <resource path="~/scripts/morris/morris.min.js" />
+      <resource path="~/Scripts/morris/morris-data.js" />
+    </resourceSet>
+
+    <resourceSet name="kendoJs" type="js">
+      <resource path="~/scripts/kendo/kendo.all.min.js" />
+      <resource path="~/scripts/kendo/cultures/kendo.culture.de-DE.min.js" />
+      <resource path="~/scripts/kendoSetting.js" />
+    </resourceSet>
+    <resourceSet name="kendoBootstrapCss" type="css">
+      <resource path="~/content/kendo/kendo.common-bootstrap.min.css" />
+      <resource path="~/content/kendo/kendo.bootstrap.min.css" />
+    </resourceSet>
+  </resourceSets>
+</combres>

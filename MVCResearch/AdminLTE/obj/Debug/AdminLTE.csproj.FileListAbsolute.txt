@@ -1,0 +1,6 @@
+E:\Sources\Sample\MVCResearch\AdminLTE\bin\AdminLTE.dll.config
+E:\Sources\Sample\MVCResearch\AdminLTE\bin\AdminLTE.dll
+E:\Sources\Sample\MVCResearch\AdminLTE\bin\AdminLTE.pdb
+E:\Sources\Sample\MVCResearch\AdminLTE\obj\Debug\AdminLTE.csprojResolveAssemblyReference.cache
+E:\Sources\Sample\MVCResearch\AdminLTE\obj\Debug\AdminLTE.dll
+E:\Sources\Sample\MVCResearch\AdminLTE\obj\Debug\AdminLTE.pdb

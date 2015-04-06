@@ -1,0 +1,25 @@
+﻿@using GridMvc.Html
+@using MVC.Models
+@model List<ProductModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header{
+    <h1>
+        Product Admin
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li class="active">Product</li>
+    </ol>
+}
+
+@(Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.Id).Titled("Product ID");
+                        columns.Add(c => c.Name).Titled("Name").Filterable(true);
+                        columns.Add(c => c.CategoryName).Titled("Category");
+                    }).WithPaging(3).Sortable(true))
+

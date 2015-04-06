@@ -1,0 +1,175 @@
+﻿@model List<dynamic>
+@{
+    ViewBag.Title = "Contacts";
+}
+
+@section header{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Contacts
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="@Url.Action("Dashboard", "Home")">Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-users"></i> Contacts
+                </li>
+            </ol>
+        </div>
+    </div>
+}
+<div class="row form-group">
+    <div class="col-lg-6">
+        <input type="text" class="form-control" id="txt-search" placeholder="Please input your keyword" />
+    </div>
+    <div class="col-lg-1">
+        <input type="button" class="btn btn-default form-control" value="Search" id="btn-search" />
+    </div>
+</div>
+<div id="grid"></div>
+<script>
+    $(document).ready(function () {
+        $('#left-navigation-bar li:nth-child(3)').addClass('active');
+
+        $('#btn-search').on('click', function () {
+            var dataSource = $("#grid").data("kendoGrid").dataSource;
+
+            var key = $('#txt-search').val();
+            if (key.trim() == "") {
+                dataSource.filter({});
+                return;
+            }
+
+            dataSource.filter([
+                {
+                    "logic": "or",
+                    "filters": [
+                        {
+                            "field": "ContactName",
+                            "operator": "contains",
+                            "value": key
+                        },
+                        {
+                            "field": "ContactTitle",
+                            "operator": "contains",
+                            "value": key
+                        },
+                        {
+                            "field": "CompanyName",
+                            "operator": "contains",
+                            "value": key
+                        },
+                        {
+                            "field": "Country",
+                            "operator": "contains",
+                            "value": key
+                        }
+                    ]
+                }
+            ]);
+
+            setTimeout('highlightKeyword("' + key.toLowerCase() + '")', 500);
+        });
+
+        $('#txt-search').on('keypress', function (e) {
+            if (e.which == 13) {
+                $('#btn-search').trigger('click');
+            }
+        });
+
+        gridInit();
+    });
+
+    function highlightKeyword(key) {
+        var cells = document.querySelectorAll("#grid td");
+        var editCell = 4, deleteCell = 4;
+        for (var i = 0; i < cells.length; i++) {
+            if (cells[i] == "undefined") break;
+            if (i == editCell || i == deleteCell) continue;
+
+            var index = cells[i].textContent.toLowerCase().indexOf(key);
+            if (index != -1) {
+                var match = cells[i].textContent.substring(index, index + key.length);
+
+                cells[i].innerHTML = cells[i].innerHTML.replace(match, "<span class='highlighted'>" + match + "</span>");
+            }
+            else {
+                cells[i].innerHTML = cells[i].innerHTML;
+            }
+        }
+    }
+
+    function gridInit() {
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@Url.Action("Read","Contacts")",
+                    contentType: "application/json",
+                },
+                update: {
+                    url: "@Url.Action("Update", "Contacts")",
+                    contentType: "application/json",
+                    type: "POST",
+                },
+                destroy: {
+                    url: "@Url.Action("Destroy", "Contacts")",
+                    contentType: "application/json",
+                    type: "POST"
+                },
+                create: {
+                    url: "@Url.Action("Create", "Contacts")",
+                    contentType: "application/json",
+                    type: "POST"
+                },
+                parameterMap: function (data, operation) {
+                    return JSON.stringify(data);
+                }
+            },
+            pageSize: 5,
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false,
+            batch: false,
+            schema: {
+                data: "Data",
+                total: "Total",
+                model: {
+                    id: "ID",
+                    fields: {
+                        ContactName: { editable: true, type: "string" },
+                        ContactTitle: { editable: true, type: "string" },
+                        CompanyName: { editable: true, type: "string" },
+                        Country: { editable: true, type: "string" },
+                    }
+                }
+            },
+        });
+
+        $("#grid").kendoGrid({
+            toolbar: [
+                { name: "create", text: "Add new contact" }
+            ],
+            columns: [
+                { field: "ContactName", title: "Contact Name" },
+                { field: "ContactTitle", title: "Contact Title", width: 200 },
+                { field: "CompanyName", title: "Company Name", width: 200 },
+                { field: "Country", title: "Country", width: 150 },
+                { command: ["edit", "destroy"], width: 190 }
+            ],
+            editable: "popup",
+            dataSource: dataSource,
+            sortable: true,
+            filterable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true
+            },
+            error: function (e) {
+                alert("The action failed. Please see the logs.");
+                this.cancelChanges();
+            }
+        });
+    }
+</script>
